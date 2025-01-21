@@ -3,6 +3,7 @@ import tkinter as tk
 screen = tk.Tk()
 screen.minsize(width=350, height=200)
 screen.title("Temp convertor")
+screen.resizable(False, False)
 
 
 
@@ -39,13 +40,14 @@ def convert():
 
 def clear():
     entry.delete(0, tk.END)
+    Fahrenheit["text"] = "0"
 
 
 convert_button = tk.Button(text="CONVERT", font=("Courier", 16, "normal"), command=convert)
-convert_button.grid(row=3, column=0, pady=10)
+convert_button.grid(row=3, column=0, columnspan=2, pady=10)
 
 clear_button = tk.Button(text="CLEAR", font=("Courier", 16, "normal"), command=clear)
-clear_button.grid(row=3, column=1, pady=10, padx=5)
+clear_button.grid(row=3, column=1, columnspan=3,pady=10)
 
 
 

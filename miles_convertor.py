@@ -1,9 +1,10 @@
 import tkinter as tk
 
 # Create the main application window
-rootscreen = tk.Tk()
-rootscreen.title("Converter")
-rootscreen.minsize(width=350, height=200)
+root_screen = tk.Tk()
+root_screen.title("Converter")
+root_screen.minsize(width=350, height=200)
+root_screen.resizable(False, False)
 
 
 label = tk.Label(text="Converter App", font=("Courier", 26, "normal"))
@@ -37,22 +38,16 @@ def clear():
 
 
 convert_button = tk.Button(text="CONVERT", font=("Courier", 16, "normal"), command=convert)
-convert_button.grid(row=3, column=0, pady=10)
+convert_button.grid(row=3, column=0, pady=10, columnspan=2)
 
 clear_button = tk.Button(text="CLEAR", font=("Courier", 16, "normal"), command=clear)
-clear_button.grid(row=3, column=1, pady=10, padx=5)
+clear_button.grid(row=3, column=1, pady=10,columnspan=2)
 
 
 
 
 
-rootscreen.mainloop()
-
-
-
-
-
-
+root_screen.mainloop()
 
 
 
@@ -67,4 +62,10 @@ rootscreen.mainloop()
 
 
 
-rootscreen.mainloop()
+
+
+
+
+
+
+root_screen.mainloop()
