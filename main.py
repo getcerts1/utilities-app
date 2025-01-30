@@ -28,6 +28,7 @@ utilities = {
     "Temp convertor": "./temp_convertor.py",
     "Stopwatch": "./stopwatch.py",
     "calculator": "./calculator.py",
+    "password-manager":"./password-manager-start/main.py"
 }
 
 def listbox_used(event):
@@ -37,8 +38,8 @@ def listbox_used(event):
     else:
         print(f"The utility '{selected_item}' is not available.")
 
-listbox = tk.Listbox(height=4, width=20)
-listbox.grid(column=0, row=1, columnspan=3, padx=50, pady=(20, 20))
+listbox = tk.Listbox(height=5, width=20)
+listbox.grid(column=0, row=1, columnspan=3, padx=50, pady=(20))
 
 for utility in utilities.keys():
     listbox.insert(tk.END, utility)

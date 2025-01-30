@@ -48,7 +48,7 @@ def timer_func(event):
     else:
         timer_set = f"{seconds_convert}:00"
 
-    # Hide the listbox after selecting a time
+
     timer_list_box.place_forget()
 
     canvas = Canvas(width=300, height=200, highlightthickness=0)
@@ -65,22 +65,21 @@ def timer_func(event):
     countdown(seconds_convert)
 
 
-# Set up the screen
 screen = Tk()
 screen.minsize(400, 400)
 screen.config(bg=YELLOW)
 screen.resizable(False, False)
 
-# Label for the timer title
 label = Label(text="TIMER", font=(FONT_NAME, 35, "normal"), fg=PINK, bg=YELLOW)
 label.grid(column=0, row=0, columnspan=3, padx=150, pady=20)
 
-# Listbox for selecting timer durations
 timer_list_box = Listbox(height=len(TIMES), width=20)
 timer_list_box.place(x=125, y=155)
 for item in TIMES:
     timer_list_box.insert(END, item)
 timer_list_box.bind("<Double-Button-1>", timer_func)
 
-# Start the main loop
+
+
+
 screen.mainloop()
