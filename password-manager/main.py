@@ -56,8 +56,8 @@ def retrieve_info():
 
 
     # ---------------------------- UI SETUP ------------------------------- #
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the script's absolute directory
-image_path = os.path.join(BASE_DIR, 'logo.png')  # Create the full path to the image
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+image_path = os.path.join(BASE_DIR, 'logo.png')
 
 FONT_NAME = "Arial"
 FONT_SIZE = 14
