@@ -1,7 +1,9 @@
 from tkinter import *
+from tkinter import messagebox
 import pandas as pd
 import os
 import string, random
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     ascii_letters = string.ascii_letters
@@ -22,6 +24,11 @@ def retrieve_info():
     user_output = user_entry.get().strip()
     password_output = password_entry.get().strip()
 
+    output = messagebox.askokcancel(title=website_output, message=f"Details entered: {website_output}\n"
+                                                         f"{password_output}\n"
+                                                         f"{user_output}\n"
+                                                         f"save?")
+    print(type(output))
     #if value is empty then request input and delete lines
     if not website_output or not user_output or not password_output:
         print("Enter a value")
@@ -42,16 +49,22 @@ def retrieve_info():
 
     #check if file path exists, if so append else, create a new file
     file_path = "password_app_data.csv"
-    if os.path.exists(file_path):
-        df.to_csv(file_path, mode='a', header=False, index=False)
+    if output:
+        if os.path.exists(file_path):
+            df.to_csv(file_path, mode='a', header=False, index=False)
+        else:
+            df.to_csv(file_path, index=False)
     else:
-        df.to_csv(file_path, index=False)
-
-
-    #Delete entry for new user
+        # Delete entry for new user
+        website_entry.delete(0, END)
+        user_entry.delete(0, END)
+        password_entry.delete(0, END)
+        # Delete entry for new user
     website_entry.delete(0, END)
     user_entry.delete(0, END)
     password_entry.delete(0, END)
+
+
 
 
 
