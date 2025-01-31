@@ -1,6 +1,7 @@
 import tkinter as tk
 import random
 import os
+from tkinter import messagebox
 
 def change_color():
     output = random_color = f"#{random.randint(0, 0xFFFFFF):06x}"
@@ -37,9 +38,11 @@ def listbox_used(event):
         os.system(f"python {utilities[selected_item]}")
     else:
         print(f"The utility '{selected_item}' is not available.")
+        messagebox.showinfo(title="error", message=f"The utility '{selected_item}' is not available.")
+        return
 
 listbox = tk.Listbox(height=5, width=20)
-listbox.grid(column=0, row=1, columnspan=3, padx=50, pady=(20))
+listbox.grid(column=0, row=1, columnspan=3, padx=50, pady=20)
 
 for utility in utilities.keys():
     listbox.insert(tk.END, utility)

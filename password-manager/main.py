@@ -12,7 +12,6 @@ def generate_password():
     characters = ascii_letters + numbers*2
     random_str = "".join(random.choice(characters) for i in range(random.randint(15,17)))
     password_entry.insert(string=f"{random_str}", index=0)
-    print(random_str)
     return random_str
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -24,14 +23,10 @@ def retrieve_info():
     user_output = user_entry.get().strip()
     password_output = password_entry.get().strip()
 
-    output = messagebox.askokcancel(title=website_output, message=f"Details entered: {website_output}\n"
-                                                         f"{password_output}\n"
-                                                         f"{user_output}\n"
-                                                         f"save?")
-    print(type(output))
     #if value is empty then request input and delete lines
     if not website_output or not user_output or not password_output:
         print("Enter a value")
+        messagebox.showinfo(message="Please enter all options")
         website_entry.delete(0, END)
         user_entry.delete(0, END)
         password_entry.delete(0, END)
@@ -49,6 +44,10 @@ def retrieve_info():
 
     #check if file path exists, if so append else, create a new file
     file_path = "password_app_data.csv"
+    output = messagebox.askokcancel(title=website_output, message=f"Details entered:\n {website_output}\n"
+                                                                  f"{password_output}\n"
+                                                                  f"{user_output}\n\n"
+                                                                  f"Save?")
     if output:
         if os.path.exists(file_path):
             df.to_csv(file_path, mode='a', header=False, index=False)
@@ -61,9 +60,6 @@ def retrieve_info():
     password_entry.delete(0, END)
 
 
-
-
-
     # ---------------------------- UI SETUP ------------------------------- #
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 image_path = os.path.join(BASE_DIR, 'logo.png')
@@ -72,7 +68,6 @@ FONT_NAME = "Arial"
 FONT_SIZE = 14
 FONT_SHAPE = "bold"
 screen = Tk()
-#screen.minsize(500,500)
 screen.resizable(False, False)
 screen.title("Password manager")
 screen.config(padx=40,pady=40)
