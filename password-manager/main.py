@@ -54,12 +54,8 @@ def retrieve_info():
             df.to_csv(file_path, mode='a', header=False, index=False)
         else:
             df.to_csv(file_path, index=False)
-    else:
-        # Delete entry for new user
-        website_entry.delete(0, END)
-        user_entry.delete(0, END)
-        password_entry.delete(0, END)
-        # Delete entry for new user
+
+
     website_entry.delete(0, END)
     user_entry.delete(0, END)
     password_entry.delete(0, END)

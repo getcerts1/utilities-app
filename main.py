@@ -28,7 +28,7 @@ utilities = {
     "Temp convertor": "./temp_convertor.py",
     "Stopwatch": "./stopwatch.py",
     "calculator": "./calculator.py",
-    "password-manager":"./password-manager-start/main.py"
+    "password-manager":"./password-manager/main.py"
 }
 
 def listbox_used(event):
