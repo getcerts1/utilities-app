@@ -1,5 +1,6 @@
 import math
 from tkinter import *
+from tkinter import messagebox
 
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -35,6 +36,10 @@ def countdown(count):
     canvas.itemconfig(timer_text, text=f"{minutes}:{seconds}")
     if count > 0:
         timer = screen.after(1000, countdown, count - 1)
+    elif count < 0:
+        message = messagebox.showinfo(title="Time up", message="TIME IS UP\n\n reset?")
+        if message:
+            countdown(selected_time * 60)
 
 
 def timer_func(event):

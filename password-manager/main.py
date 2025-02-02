@@ -34,9 +34,9 @@ def retrieve_info():
 
     #else take value and append a dict to a list
     data.append({
-        "Website": website_output,
-        "User": user_output,
-        "Password": password_output
+        "website": website_output,
+        "user": user_output,
+        "password": password_output
     })
 
     #create a dataframe from the list (pandas dataframe only takes input in the form of a list)
@@ -52,12 +52,34 @@ def retrieve_info():
         if os.path.exists(file_path):
             df.to_csv(file_path, mode='a', header=False, index=False)
         else:
-            df.to_csv(file_path, index=False)
+            df.to_csv(file_path,index=False)
 
 
     website_entry.delete(0, END)
     user_entry.delete(0, END)
     password_entry.delete(0, END)
+
+def retrieve_data():
+    df = pd.read_csv("password_app_data.csv")  # Load the CSV
+    website_output = website_entry.get().strip().lower()  # Get the user input and convert to lowercase
+
+    # Check if the input is empty
+    if not website_output:
+        messagebox.showinfo(title="Error", message="Enter A Value")
+        return
+
+    found = False
+    for index, row in df.iterrows():
+        if row['website'].lower() == website_output:
+            messagebox.showinfo(title= "userinfo",
+                                message=f"Email/username: {row['user']}\nPassword: {row['password']}")
+            print(f"Website: {row['website']}, User: {row['user']}, Password: {row['password']}")
+            found = True
+            break
+
+    if not found:
+        messagebox.showinfo(title="Error", message="Not found")
+
 
 
     # ---------------------------- UI SETUP ------------------------------- #
@@ -83,6 +105,9 @@ website_label = Label(text="Website:", font=(FONT_NAME,FONT_SIZE, FONT_SHAPE))
 website_label.grid(row=1, column=0)
 website_label.config(fg="white")
 
+search_button = Button(text="Search",fg="black", width=11, command=retrieve_data)
+search_button.grid(row=1, column=2, sticky="w")
+
 user_label = Label(text="Email/Username:", font=(FONT_NAME,FONT_SIZE, FONT_SHAPE))
 user_label.grid(row=2, column=0)
 user_label.config(fg="white")
@@ -91,8 +116,8 @@ password_label = Label(text="Password:", font=(FONT_NAME,FONT_SIZE, FONT_SHAPE))
 password_label.grid(row=3, column=0)
 password_label.config(fg="white")
 
-website_entry = Entry(width=35)
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry = Entry(width=18)
+website_entry.grid(row=1, column=1)
 website_entry.config(fg="white")
 
 user_entry = Entry(width=35)
