@@ -60,10 +60,9 @@ def retrieve_info():
     password_entry.delete(0, END)
 
 def retrieve_data():
-    df = pd.read_csv("password_app_data.csv")  # Load the CSV
-    website_output = website_entry.get().strip().lower()  # Get the user input and convert to lowercase
+    df = pd.read_csv("password_app_data.csv")
+    website_output = website_entry.get().strip().lower()
 
-    # Check if the input is empty
     if not website_output:
         messagebox.showinfo(title="Error", message="Enter A Value")
         return
@@ -73,7 +72,6 @@ def retrieve_data():
         if row['website'].lower() == website_output:
             messagebox.showinfo(title= "userinfo",
                                 message=f"Email/username: {row['user']}\nPassword: {row['password']}")
-            print(f"Website: {row['website']}, User: {row['user']}, Password: {row['password']}")
             found = True
             break
 
